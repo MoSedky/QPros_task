@@ -44,21 +44,23 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: set pythonpath
+      run: |
+        echo "PYTHONPATH=/QPros_task" >> $GITHUB_ENV
     - name: Execute Tests - Signup and Login Scenario
-      working-directory: $GITHUB_WORKSPACE
       continue-on-error: true
       run: |
         pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "signup_login" ./Tests/
     - name: Execute Tests - Check Category Items and lists
       continue-on-error: true
       run: |    
-        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "categories" /Tests/
+        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "categories" ./Tests/
     - name: Execute Tests - Check Add and Delete Random Items
       continue-on-error: true
       run: |    
-        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "add_delete_rand_item" /Tests/
+        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "add_delete_rand_item" ./Tests/
     - name: Execute Tests - Check Complete Purchasing Order
       continue-on-error: true
       run: |    
-        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "complete_checkout" /Tests/
+        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "complete_checkout" ./Tests/
         exit 1
