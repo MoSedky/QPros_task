@@ -2,12 +2,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 
+from POM.GenericPage import GenericPage
 
-class LoginPage:
+
+class LoginPage(GenericPage):
 
     def __init__(self, driver):
-        self.driver = driver
-        self.wait = WebDriverWait(self.driver, 30)
+        super().__init__(driver)
 
     def insert_username(self, username):
         username_txt = self.wait.until(ec.visibility_of_element_located((By.XPATH,

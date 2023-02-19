@@ -4,12 +4,13 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
+from POM.GenericPage import GenericPage
 
-class MainPage:
+
+class MainPage(GenericPage):
 
     def __init__(self, driver):
-        self.driver = driver
-        self.wait = WebDriverWait(self.driver, 30)
+        super().__init__(driver)
 
     def assert_web_logo(self):
         logo = self.wait.until(ec.visibility_of_element_located((By.XPATH, '//a[contains(@href,"index") '
