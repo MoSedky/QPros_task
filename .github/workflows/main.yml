@@ -45,18 +45,22 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Execute Tests - Signup and Login Scenario
+      working-directory: ./QPros_task
       continue-on-error: true
       run: |
         pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "signup_login" ./Tests/
     - name: Execute Tests - Check Category Items and lists
+      working-directory: ./QPros_task
       continue-on-error: true
       run: |    
         pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "categories" ./Tests/
     - name: Execute Tests - Check Add and Delete Random Items
+      working-directory: ./QPros_task
       continue-on-error: true
       run: |    
         pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "add_delete_rand_item" ./Tests/
     - name: Execute Tests - Check Complete Purchasing Order
+      working-directory: ./QPros_task
       continue-on-error: true
       run: |    
         pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "complete_checkout" ./Tests/
