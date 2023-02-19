@@ -45,8 +45,9 @@ Using Terminal in Project Root Dir. Following is example:
 
 ### Notes:
 
-Feel free to change test case by marker name. Available markers are: `signup_login`, `categories`, `add_delete_rand_item` and `complete_checkout`
+- Feel free to change test case by marker name. Available markers are: `signup_login`, `categories`, `add_delete_rand_item` and `complete_checkout`
 Arguments can be found in test_ methods and in `conftest.py` file
+- Please comment line 13 in `conftest.py` to disable headless mode. Added for docker running
 
 ### Dockerising
 
