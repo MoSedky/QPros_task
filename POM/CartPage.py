@@ -26,6 +26,12 @@ class CartPage(GenericPage):
         place_order_btn = self.wait.until(ec.element_to_be_clickable((By.XPATH, '//button[text()="Place Order"]')))
         place_order_btn.click()
 
+    def validate_item_exists(self):
+        try:
+            self.wait.until(ec.visibility_of_element_located((By.XPATH, '//tr[contains(@class,"success")]')))
+        except Exception as e:
+            pytest.fail(f'Item not displayed in Cart due to exception: {e}')
+
     def check_place_order_form(self):
         try:
             self.wait.until(ec.visibility_of_all_elements_located
