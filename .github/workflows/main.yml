@@ -1,0 +1,63 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: QProsTask
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Execute Tests - Signup and Login Scenario
+      continue-on-error: true
+      run: |
+        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "signup_login" ./Tests/
+    - name: Execute Tests - Check Category Items and lists
+      continue-on-error: true
+      run: |    
+        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "categories" ./Tests/
+    - name: Execute Tests - Check Add and Delete Random Items
+      continue-on-error: true
+      run: |    
+        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "add_delete_rand_item" ./Tests/
+    - name: Execute Tests - Check Complete Purchasing Order
+      continue-on-error: true
+      run: |    
+        pytest --disable-pytest-warnings --show-capture=all -s -v --log-cli-level=INFO -m "complete_checkout" ./Tests/
+        exit 1
