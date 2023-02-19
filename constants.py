@@ -1,2 +1,9 @@
 MAIN_URL = 'https://www.demoblaze.com/'
 category_names = ['Phones', 'Laptops', 'Monitors']
+LOGO_TEXT = ' PRODUCT STORE'
+SIGNUP_SUCCESS = 'Sign up successful.'
+COUNTRY = 'SAUDI ARABIA'
+CITY = 'RIYADH'
+CREDIT_CARD_NO = '123546987123398524'
+MONTH = 6
+YEAR = 2025
