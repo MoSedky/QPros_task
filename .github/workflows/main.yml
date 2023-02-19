@@ -46,7 +46,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: set pythonpath
       run: |
-        echo "PYTHONPATH=/QPros_task" >> $GITHUB_ENV
+        echo "PYTHONPATH=/home/runner/work/QPros_task/QPros_task/" >> $GITHUB_ENV
     - name: Execute Tests - Signup and Login Scenario
       continue-on-error: true
       run: |
