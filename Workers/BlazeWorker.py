@@ -89,6 +89,7 @@ class BlazeWorker:
         item_title = cart_page.get_category_title()
         assert item_title == item_name, 'Mismatch between displayed item name and item title selected.' \
                                         f'Expected: {item_name} != Current: {item_title}'
+        cart_page.validate_item_exists()
         cart_page.click_place_order()
         cart_page.check_place_order_form()
         cart_page.insert_name(name)
@@ -117,4 +118,5 @@ class BlazeWorker:
                                          f'Expected: {current_date}!= Current: {date_val}'
 
         cart_page.click_purchase_ok()
+        cart_page.validate_item_deleted()
         logging.info('Order Purchased successfully')
